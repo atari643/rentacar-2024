@@ -1,0 +1,14 @@
+nelmio_api_doc:
+    models:
+        names:
+            - { alias: AgencyInfos, type: App\Entity\Agency, groups: [agency_infos] }
+            - { alias: CarInfos, type: App\Entity\Car, groups: [car_infos] }
+            - { alias: CarNew, type: App\Entity\Car, groups: [car_new] }
+    documentation:
+        info:
+            title: Rent-a-car
+            description: Trouvez une voiture à louer!
+            version: 1.0.0
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
