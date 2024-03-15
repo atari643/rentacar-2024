@@ -26,10 +26,12 @@ class Agency
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups("agency_infos")]
     #[OA\Property(example: "123 rue de quelque-part, France", description: "Adresse de l'agence")]
     private ?string $address = null;
 
     #[ORM\OneToMany(mappedBy: 'agency', targetEntity: Car::class, orphanRemoval: true)]
+    #[Groups("agency_infos")]
     private Collection $cars;
 
     public function __construct()

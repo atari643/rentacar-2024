@@ -86,4 +86,25 @@ class CarApiController extends AbstractController
 
         return $car;
     }
+    #[OA\Post(
+        summary: "Supprimer une voiture"
+    )]
+    #[OA\Response(
+        response: 200,
+        description: "La voiture supprimer",
+        content: new OA\JsonContent(ref: "#/components/schemas/CarInfos")
+    )]
+    #[View(serializerGroups: ["car_infos"])]
+    #[Route("/car/{id}", methods: ["DELETE"])]
+    public function delete(
+        Agency $agency,
+        #[MapRequestPayload(serializationContext: ['groups' => ['car_new']])] Car $car,
+        CarRepository $cars
+    ) {
+        $cars->remove($car);
+        $cars->flush();
+
+        return $car;
+    }
+
 }
